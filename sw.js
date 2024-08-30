@@ -41,7 +41,11 @@ self.addEventListener("install", event => {
    '/image4.jpeg',
    '/image5.jpeg',
    '/image6.jpeg',
-   '/image7.jpeg'
+   '/image7.jpeg',
+   '/image8.jpeg',
+   '/image9.jpeg',
+   '/image10.jpeg',
+   '/image11.jpeg'
  ];
 self.addEventListener("install", event => {
    event.waitUntil(
