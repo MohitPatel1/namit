@@ -12,11 +12,60 @@
 <meta name="theme-color" content="#ffffff">
 
     
-    <title>Mohit service worker</title>
+    <title>Namit patel dot com</title>
     <script src="sw.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .collage {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .collage-item {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .collage-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .collage-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    </style>
 </head>
 <body>
-    <h3>The app is on!</h3>
-    <img src="afterAllThisTime.jpeg"/>
+    <div class="collage">
+        <div class="collage-item"><img src="image1.jpeg" alt="Image 1"></div>
+        <div class="collage-item"><img src="image2.jpeg" alt="Image 2"></div>
+        <div class="collage-item"><img src="image3.jpeg" alt="Image 3"></div>
+        <div class="collage-item"><img src="image4.jpeg" alt="Image 4"></div>
+        <div class="collage-item"><img src="image5.jpeg" alt="Image 5"></div>
+        <div class="collage-item"><img src="image6.jpeg" alt="Image 6"></div>
+    </div>
+
+    <script>
+        function checkScroll() {
+            const items = document.querySelectorAll('.collage-item');
+            items.forEach(item => {
+                const rect = item.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom >= 0;
+                if (isVisible) {
+                    item.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+    </script>
 </body>
 </html>
