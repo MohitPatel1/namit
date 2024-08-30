@@ -30,7 +30,19 @@ self.addEventListener("install", event => {
     event.waitUntil(clients.claim());
  });
 
-const urlsToCache = ["/", 'sw.js', "index.html", "always.jpeg", "afterAllThisTime.jpeg"];
+ const urlsToCache = [
+   '/',
+   '/index.html',
+   '/styles.css',
+   '/script.js',
+   '/image1.jpeg',
+   '/image2.jpeg',
+   '/image3.jpeg',
+   '/image4.jpeg',
+   '/image5.jpeg',
+   '/image6.jpeg',
+   '/image7.jpeg'
+ ];
 self.addEventListener("install", event => {
    event.waitUntil(
       caches.open("chamber-of-secrets")
@@ -66,3 +78,28 @@ self.addEventListener('fetch', event => {
         })
     )
 })
+
+const CACHE_NAME = 'my-site-cache-v1';
+
+
+self.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(function(cache) {
+        return cache.addAll(urlsToCache);
+      })
+  );
+});
+
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request)
+      .then(function(response) {
+        if (response) {
+          return response;
+        }
+        return fetch(event.request);
+      }
+    )
+  );
+});
