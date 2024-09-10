@@ -45,7 +45,8 @@ self.addEventListener("install", event => {
    '/image8.jpeg',
    '/image9.jpeg',
    '/image10.jpeg',
-   '/image11.jpeg'
+   '/image11.jpeg',
+   '/garba.gif',
  ];
 self.addEventListener("install", event => {
    event.waitUntil(
